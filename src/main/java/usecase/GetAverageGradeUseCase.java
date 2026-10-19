@@ -20,6 +20,9 @@ public final class GetAverageGradeUseCase {
      * @return The average grade.
      */
     public float getAverageGrade(String course) {
+        if (course.isEmpty()) {
+            return 0;
+        }
         float sum = 0;
         int count = 0;
         final Team team = gradeDataBase.getMyTeam(); // Call the API to get the usernames of all team members
