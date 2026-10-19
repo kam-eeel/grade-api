@@ -1,6 +1,7 @@
 package example;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 /**
  * Class for getting your Grade API token.
@@ -15,12 +16,18 @@ public class GetToken {
         GetExample example = new GetExample();
 
         String gradeAPISignUpURL = "https://csc207-20269-vm.teach.cs.toronto.edu/signUp";
-        // TODO Task 1: use the run method to get your Grade API token (or obtain your token through a web browser).
-        String userName = ""; // TODO specify the username you want to use.
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("enter a username to sign up with: ");
+        String userName = scanner.nextLine();
         if (userName.isEmpty()) {
             System.out.println("please choose a non-empty user name!");
-            System.exit(0);
+            while (userName.isEmpty()) {
+                System.out.print("enter a username to sign up with: ");
+                userName = scanner.nextLine();
+            }
         }
+
         String response = "";
         try {
             response = example.run(gradeAPISignUpURL, "username", userName);
